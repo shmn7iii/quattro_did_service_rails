@@ -8,7 +8,7 @@ class VerifyDidService < BaseService
   end
 
   def call
-    @signing_key = Sidetree::Key.from_jwk(@signing_key_jwk)
+    @signing_key = Sidetree::Key.from_jwk(JSON.parse(@signing_key_jwk))
 
     signature = ECDSA::Format::SignatureDerString.decode(@signature_der.htb)
     success = ECDSA.valid_signature?(@signing_key.public_key, @message_digest.htb, signature)
