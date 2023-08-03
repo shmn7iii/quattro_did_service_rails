@@ -60,7 +60,30 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    aes_key_wrap (1.1.0)
     ast (2.4.2)
+    base32 (0.3.4)
+    bech32 (1.3.0)
+      thor (>= 1.1.0)
+    bindata (2.4.15)
+    bip-schnorr (0.6.0)
+      ecdsa_ext (~> 0.5.0)
+    bitcoinrb (1.3.0)
+      base32 (>= 0.3.4)
+      bech32 (>= 1.3.0)
+      bip-schnorr (>= 0.5.0)
+      daemon-spawn
+      ecdsa_ext (~> 0.5.0)
+      eventmachine
+      eventmachine_httpserver
+      ffi
+      iniparse
+      json_pure (>= 2.3.1)
+      leb128 (~> 1.0.0)
+      murmurhash3
+      protobuf (= 3.8.5)
+      siphash
+      thor
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -69,20 +92,42 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    daemon-spawn (0.4.2)
     date (3.3.3)
     diffy (3.4.2)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    ecdsa (1.2.0)
+    ecdsa_ext (0.5.0)
+      ecdsa (~> 1.2.0)
     erubi (1.12.0)
+    eventmachine (1.2.7)
+    eventmachine_httpserver (0.2.1)
+    faraday (2.7.10)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-follow_redirects (0.3.0)
+      faraday (>= 1, < 3)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    iniparse (1.5.0)
     json (2.6.3)
+    json-canonicalization (0.3.2)
+    json-jwt (1.16.3)
+      activesupport (>= 4.2)
+      aes_key_wrap
+      bindata
+      faraday (~> 2.0)
+      faraday-follow_redirects
+    json_pure (2.6.3)
     language_server-protocol (3.17.0.3)
+    leb128 (1.0.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -96,9 +141,14 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
+    middleware (0.1.0)
     mini_mime (1.1.2)
     minitest (5.19.0)
     msgpack (1.7.2)
+    multicodecs (0.2.1)
+    multihashes (0.2.0)
+      multicodecs (>= 0.2.0, < 1)
+    murmurhash3 (0.1.7)
     net-imap (0.3.7)
       date
       net-protocol
@@ -115,6 +165,11 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    protobuf (3.8.5)
+      activesupport (>= 3.2)
+      middleware
+      thor
+      thread_safe
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -189,6 +244,13 @@ GEM
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
+    sidetree (0.1.5)
+      ecdsa (~> 1.2.0)
+      json-canonicalization (~> 0.3.0)
+      json-jwt (~> 1.16.3)
+      multihashes (~> 0.2.0)
+    siphash (0.0.1)
     spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
@@ -199,6 +261,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.6.3-arm64-darwin)
     thor (1.2.2)
+    thread_safe (0.3.6)
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -212,6 +275,7 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  bitcoinrb
   bootsnap (>= 1.4.4)
   byebug
   dotenv-rails
@@ -223,6 +287,7 @@ DEPENDENCIES
   ridgepole
   rubocop
   rubocop-rails
+  sidetree
   spring
   sqlite3 (~> 1.4)
   tzinfo-data

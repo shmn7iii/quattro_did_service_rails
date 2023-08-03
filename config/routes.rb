@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post '/did/create', to: 'dids#create'
+  get '/did/resolve/:did', to: 'dids#resolve'
+  post '/did/signature', to: 'dids#signature'
+  post '/did/verify', to: 'dids#verify'
 end
